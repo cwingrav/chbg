@@ -2,9 +2,9 @@
 > (MacOS) A command line script that sets an image for your desktop background with a label in all corners and a larger label lower mid-right. Places the image in ~/Desktop/chbg and is created with ImageMagick.
 
 
-<img src="./imgs/backgroundimage.33699.png" alt="Example background image created" width="400" />
+<img src="./imgs/backgroundimage.png" alt="Example background image created" width="400" />
 
-Above created with `chbg -bg "Dark Goldenrod" A Label`:
+Above example created with `chbg -bg "rebecca" A Label`. see [rebecca](https://meyerweb.com/eric/thoughts/2014/06/19/rebeccapurple/)
 
 
 # Usage
