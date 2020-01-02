@@ -1,5 +1,5 @@
 
-Creates an image in ~/Desktop/chbg with imagemagick with a label in all corners, and a larger label lower mid-right.
+> Creates an image in ~/Desktop/chbg with imagemagick with a label in all corners, and a larger label lower mid-right.
 
 # Usage
 
