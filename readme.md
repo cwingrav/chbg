@@ -1,5 +1,11 @@
 
-> Creates an image in ~/Desktop/chbg with imagemagick with a label in all corners, and a larger label lower mid-right.
+> (MacOS) A command line script that sets an image for your desktop background with a label in all corners and a larger label lower mid-right. Places the image in ~/Desktop/chbg and is created with ImageMagick.
+
+
+<img src="./imgs/backgroundimage.33699.png" alt="Example background image created" width="400" />
+
+Above created with `chbg -bg "Dark Goldenrod" A Label`:
+
 
 # Usage
 
@@ -14,7 +20,7 @@ usage : chbg [-bg|--bgcolor X] [-h|--help] label
 
 ```
 
-Ex. To set the desktop virtual window (i.e. Spaces desktop) to the color "Dark Goldenrod" with the label of "Email", because you do email in that window, type: `chbg -bg "Dark Goldenrod" Email`.
+Ex. To set the desktop virtual window (i.e. Spaces desktop) to the color "Dark Goldenrod" with the label of "Email", because you do email in that window, type: `chbg -bg "Dark Goldenrod" A Label`.
 
 
 # Installation
