@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+FDUMP=~/Desktop/chbg
+mkdir -p ${FDUMP}
+
+BGCOLOR="#555"  # darker grey
+
+function DisplayOptions
+{
+    echo
+    echo "usage : `basename $0` [-bg|--bgcolor X] [-h|--help] label"
+    echo
+    echo "  label - text to display on the screen."
+    echo
+    echo "  -bg|--bgcolor X : set the screen's color to X"
+    echo "         ex. 'rgb(1,1,1)', '#555', 'red'"
+    echo "  --colors : show X11 colors page."
+    echo
+}
+
+if [ $# -lt 1 ]; then
+    echo
+    echo "ERROR: need 'label' parameter"
+    DisplayOptions
+    exit 1
+fi
+
+while [[ $1 =~ ^- ]]
+do
+  if [ $1 == '-bg' -o $1 == '--bgcolor' ]; then
+    shift
+    BGCOLOR=$1
+    if [ "${BGCOLOR}" == "rebeccapurple" ]; then BGCOLOR="#663399"; fi
+    if [ "${BGCOLOR}" == "rebecca" ]; then BGCOLOR="#663399"; fi
+    shift
+  elif [ "$1" == '--colors' ]; then
+    open https://en.wikipedia.org/wiki/X11_color_names
+    exit 0
+  elif [ "$1" == '--help' ] || [ "$1" == '-h' ]; then
+    DisplayOptions
+    exit 0
+  fi
+done
+
+R=$( echo "$*" | convert -background "${BGCOLOR}" -resize "2880x1800!" \
+  -pointsize 32 \
+  -gravity northwest \
+  -draw "text 0,32 '$*'" \
+  -gravity northeast \
+  -draw "text 0,32 '$*'" \
+  -gravity southwest \
+  -draw "text 0,0 '$*'" \
+  -gravity southeast \
+  -draw "text 0,0 '$*'" \
+  text:''  \
+  -flatten  \
+  ${FDUMP}/backgroundimage.$$.png 2>&1 )
+
+echo "... ${FDUMP}/backgroundimage.$$.png"
+if [ "$R" != "" ]; then
+  if [ "$(which gs)" == "" ]; then
+    printf "ERROR: failed creating image.\nCould not find 'gs' which might be the problem. Try 'brew install gs'.\n\n"
+    exit 1
+  else
+    printf "ERROR: failed creating image.\n${R}\n\n"
+  fi
+  exit 1
+fi
+
+osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Users/cwingrav/Desktop/chbg/backgroundimage.'$$'.png"'
